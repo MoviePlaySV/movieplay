@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MoviePlay - Descargas</title>
+  <meta name="google-site-verification" content="RqBZZ0UDf8IDzQp3185GKFxtuUbCPUBDVvGdYpzWz0w" />
+  <style>
+  body {
+  background: #020617;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+#menu {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 15px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+#menu a {
+  color: #38bdf8;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+#menu a:hover {
+  color: #facc15;
+}
+
+section {
+  background: transparent;
+  padding: 40px 20px;
+}
+
+.item {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 15px auto;
+  max-width: 600px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 8px 5px;
+  padding: 10px 15px;
+  background: #1e293b;
+  color: #facc15;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #334155;
+}
+  </style>
+</head>
+<body>
+
+<nav id="menu">
+  <a href="#inicio">🏠 Inicio</a>
+  <a href="#juegos">🕹️ Juegos</a>
+  <a href="#peliculas">🎬 Películas</a>
+</nav>
+
+<!-- ===== MENÚ ===== -->
+<nav>
+  <div class="logo">🎬 MoviePlay 🎮</div>
+  <div>
+    <a href="#inicio">Inicio</a>
+    <a href="#juegos">Juegos</a>
+    <a href="#peliculas">Películas</a>
+  </div>
+</nav>
+
+<!-- ===== INICIO ===== -->
+<section id="inicio">
+  <h1>Bienvenido a MoviePlay</h1>
+  <p>Tu biblioteca digital de películas y juegos clásicos</p>
+</section>
+
+<!-- ===== JUEGOS ===== -->
+<section id="juegos">
+  <h2>🕹️ Juegos</h2>
+<input 
+  type="text" 
+  id="buscador" 
+  placeholder="🔍 Buscar juego..." 
+  onkeyup="buscarJuego()"
+  style="
+    padding:12px;
+    width:80%;
+    max-width:400px;
+    border-radius:10px;
+    border:none;
+    margin:20px auto;
+    display:block;
+    font-size:1em;
+  "
+>
+
+  <h3 style="color:#facc15;">⚔️ Estrategia</h3>
+
+  <div class="item juego">
+    <img src="archivos/aoe.jpg" width="200"><br><br>
+    <b>Age of Empires</b>
+    <p>Estrategia en tiempo real. Construye tu imperio y conquista el mundo.</p>
+    <a href="https://drive.google.com/file/d/18NkglGOUU5bhT_U-p1iMLN7p26O_5G-m/view?usp=drive_link" download class="btn">⬇ Descargar</a>
+  </div>
+
+  <h3 style="color:#f87171;">💥 Acción</h3>
+
+  <div class="item juego">
+    <img src="archivos/angribirds.jpg" width="200"><br><br>
+    <b>Angry Birds Portable Español</b>
+    <p>Acción clásica en primera persona. Demonios, armas y pura adrenalina.</p>
+    <a href="https://drive.google.com/file/d/1UtwLdH_vjJ5hlriFsuZB9EQS_LmxH7d7/view?usp=drive_link" download class="btn">⬇ Descargar</a>
+  </div>
+
+<div class="item juego">
+    <img src="archivos/GHIII.jpg" width="200"><br><br>
+    <b>Guitar Hero III</b>
+    <p>Musica banda Rock.</p>
+    <a href="https://drive.google.com/file/d/1ZPKFowEay0DlaXYODQV0TspyDVWGzaWi/view?usp=drive_link" download class="btn">⬇ Parte 1</a>
+    <a href="https://drive.google.com/file/d/1JI-N0XcQvVL1RMPywtY1I9Cjd9dWWC5f/view?usp=drive_link" download class="btn">⬇ Parte 2</a>
+    <a href="https://drive.google.com/file/d/1bnJYL_ahMEFM1lwG0_JED4dnQK5Iz4c8/view?usp=drive_link" download class="btn">⬇ Parte 3</a>
+    <a href="https://drive.google.com/file/d/1f9qD0QkzGxJuwK85rCZpHuZCnYZCCtsX/view?usp=drive_link" download class="btn">⬇ Parte 4</a>
+</div>
+
+</section>
+
+<!-- ===== PELÍCULAS ===== -->
+<section id="peliculas">
+  <h2>🎥 Películas</h2>
+<input 
+  type="text" 
+  id="buscadorPeliculas" 
+  placeholder="🔍 Buscar película..." 
+  onkeyup="buscarPelicula()"
+  style="
+    padding:12px;
+    width:80%;
+    max-width:400px;
+    border-radius:10px;
+    border:none;
+    margin:20px auto;
+    display:block;
+    font-size:1em;
+  "
+>
+<div style="text-align:center; margin-bottom:20px;">
+  <button class="btn" onclick="filtrarPelis('todas')">🎬 Todas</button>
+  <button class="btn" onclick="filtrarPelis('accion')">💥 Acción</button>
+  <button class="btn" onclick="filtrarPelis('terror')">👻 Terror</button>
+  <button class="btn" onclick="filtrarPelis('animacion')">🐉 Animación</button>
+</div>
+<div class="item pelicula accion">
+  <img src="archivos/avengers ultron.jpg" width="200"><br><br>
+  <b>Avengers: Era de ultrón (2019)</b>
+  <p>Superhéroes. La batalla final por el destino del universo.</p>
+
+  <a href="https://drive.google.com/file/d/1UYc-nCgbBGS2HAhA83u6tSNSh7wiXYRl/view?usp=drive_link" 
+   class="btn" target="_blank">⬇ Parte 1</a>
+  <a href="https://drive.google.com/file/d/1E94Ivs7bZNc65mDIqKFIbD63hbB-gCa_/view?usp=drive_link" 
+   class="btn" target="_blank">⬇ Parte 2</a>
+  <a href="https://drive.google.com/file/d/1ciuoH9-ZFT2OlbVqeV64CYghTlAhFWMA/view?usp=drive_link" 
+   class="btn" target="_blank">⬇ Parte 3</a>
+
+  <div class="item">
+    <b>Próximamente</b>
+    <p>Aquí aparecerán tus películas.</p>
+  </div>
+
+
+<footer>
+  © 2026 MoviePlay
+</footer>
+
+<script>
+function buscarJuego() {
+  let input = document.getElementById("buscador");
+  let filtro = input.value.toLowerCase();
+  let juegos = document.getElementsByClassName("juego");
+
+  for (let i = 0; i < juegos.length; i++) {
+    let texto = juegos[i].innerText.toLowerCase();
+    if (texto.includes(filtro)) {
+      juegos[i].style.display = "";
+    } else {
+      juegos[i].style.display = "none";
+    }
+  }
+}
+
+function buscarPelicula() {
+  let input = document.getElementById("buscadorPeliculas");
+  let filtro = input.value.toLowerCase();
+  let pelis = document.getElementsByClassName("pelicula");
+
+  for (let i = 0; i < pelis.length; i++) {
+    let texto = pelis[i].innerText.toLowerCase();
+    if (texto.includes(filtro)) {
+      pelis[i].style.display = "";
+    } else {
+      pelis[i].style.display = "none";
+    }
+  }
+}
+</script>
+</body>
+</html>
