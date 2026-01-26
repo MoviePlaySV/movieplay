@@ -235,6 +235,22 @@ function buscarPelicula() {
     }
   }
 }
+
+function filtrarPelis(categoria) {
+  let pelis = document.getElementsByClassName("pelicula");
+
+  for (let i = 0; i < pelis.length; i++) {
+    if (categoria === "todas") {
+      pelis[i].style.display = "";
+    } else {
+      if (pelis[i].classList.contains(categoria)) {
+        pelis[i].style.display = "";
+      } else {
+        pelis[i].style.display = "none";
+      }
+    }
+  }
+}
 </script>
 </body>
 </html>
