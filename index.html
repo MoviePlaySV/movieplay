@@ -1,10 +1,206 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>MoviePlay - Descargas</title>
-  <meta name="google-site-verification" content="RqBZZ0UDf8IDzQp3185GKFxtuUbCPUBDVvGdYpzWz0w" />
-  <style>
+<meta charset="UTF-8">
+<title>MoviePlay - Descargas</title>
+
+<style>
+body {
+  background:#020617;
+  color:white;
+  font-family:Arial,sans-serif;
+  margin:0;
+}
+
+#menu {
+  background:rgba(15,23,42,0.8);
+  padding:15px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+#menu a {
+  color:#38bdf8;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
+}
+
+#menu a:hover { color:#facc15; }
+
+section {
+  margin:40px auto;
+  padding:20px;
+  max-width:1100px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:18px;
+}
+
+.item {
+  cursor:pointer;
+  transition:transform .2s ease,box-shadow .2s ease;
+  text-align:center;
+}
+
+.item img {
+  width:100%;
+  max-width:160px;
+  border-radius:10px;
+}
+
+.item:hover {
+  transform:scale(1.06);
+  box-shadow:0 0 15px rgba(56,189,248,.4);
+}
+
+.btn {
+  display:inline-block;
+  margin:6px 4px;
+  padding:8px 12px;
+  background:#1e293b;
+  color:#facc15;
+  border-radius:8px;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.btn:hover { background:#334155; }
+
+/* MODAL */
+.modal {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,.85);
+  z-index:2000;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content {
+  background:#020617;
+  padding:25px;
+  border-radius:15px;
+  max-width:420px;
+  width:90%;
+  text-align:center;
+  box-shadow:0 0 30px rgba(56,189,248,.5);
+}
+
+.close {
+  float:right;
+  font-size:22px;
+  cursor:pointer;
+  color:#f87171;
+}
+
+.close:hover { color:#ef4444; }
+</style>
+</head>
+
+<body>
+
+<nav id="menu">
+  <a href="#inicio">Inicio</a>
+  <a href="#juegos">Juegos</a>
+  <a href="#peliculas">Películas</a>
+</nav>
+
+<section id="inicio">
+  <h1>🎬 MoviePlay 🎮</h1>
+  <p>Tu biblioteca gamer y cinematográfica</p>
+</section>
+
+<section id="juegos">
+<h2>🕹️ Juegos</h2>
+
+<input id="buscador" placeholder="Buscar juego..."
+onkeyup="buscarJuego()" style="padding:10px;width:80%;max-width:400px;border-radius:10px;border:none;display:block;margin:15px auto;">
+
+<div class="grid">
+
+<div class="item juego" onclick="abrirModal(
+'Age of Empires',
+'Estrategia en tiempo real. Construye tu imperio y conquista el mundo.',
+'<a href=https://drive.google.com/file/d/18NkglGOUU5bhT_U-p1iMLN7p26O_5G-m/view?usp=drive_link class=btn target=_blank>⬇ Descargar</a>'
+)">
+<img src="archivos/aoe.jpg">
+</div>
+
+<div class="item juego" onclick="abrirModal(
+'Angry Birds',
+'Acción casual con pájaros explosivos.',
+'<a href=https://drive.google.com/file/d/1UtwLdH_vjJ5hlriFsuZB9EQS_LmxH7d7/view?usp=drive_link class=btn target=_blank>⬇ Descargar</a>'
+)">
+<img src="archivos/angribirds.jpg">
+</div>
+
+<div class="item juego" onclick="abrirModal(
+'Guitar Hero III',
+'Juego musical de rock con guitarras legendarias.',
+'<a href=https://drive.google.com/file/d/1ZPKFowEay0DlaXYODQV0TspyDVWGzaWi/view?usp=drive_link class=btn target=_blank>⬇ Parte 1</a> \
+<a href=https://drive.google.com/file/d/1JI-N0XcQvVL1RMPywtY1I9Cjd9dWWC5f/view?usp=drive_link class=btn target=_blank>⬇ Parte 2</a> \
+<a href=https://drive.google.com/file/d/1bnJYL_ahMEFM1lwG0_JED4dnQK5Iz4c8/view?usp=drive_link class=btn target=_blank>⬇ Parte 3</a> \
+<a href=https://drive.google.com/file/d/1f9qD0QkzGxJuwK85rCZpHuZCnYZCCtsX/view?usp=drive_link class=btn target=_blank>⬇ Parte 4</a>'
+)">
+<img src="archivos/GHIII.jpg">
+</div>
+
+<div class="item juego" onclick="abrirModal(
+'GTA San Andreas',
+'Acción en mundo abierto.',
+'<a href=https://mega.nz/file/4dhTiQQC#jZGrT0xCsOUuGfrhWKdKsLgcNywLiPiITNc8CB9aGqg class=btn target=_blank>⬇ Parte 1</a> \
+<a href=https://mega.nz/file/pRBlHCYQ#wLKLqIa7ZYXX7aiht6SVzmJDf0owExju-FZ339mpuWM class=btn target=_blank>⬇ Parte 2</a>'
+)">
+<img src="archivos/GTA San Andreas.jpg">
+</div>
+
+</div>
+</section>
+
+<section id="peliculas">
+<h2>🎥 Películas</h2>
+
+<input id="buscadorPeliculas" placeholder="Buscar película..."
+onkeyup="buscarPelicula()" style="padding:10px;width:80%;max-width:400px;border-radius:10px;border:none;display:block;margin:15px auto;">
+
+<div style="text-align:center;">
+<button class="btn" onclick="filtrarPelis('todas')">Todas</button>
+<button class="btn" onclick="filtrarPelis('accion')">Acción</button>
+<button class="btn" onclick="filtrarPelis('terror')">Terror</button>
+</div>
+
+<div class="grid">
+
+<div class="item pelicula accion" onclick="abrirModal(
+'Avengers Era de Ultron',
+'Superhéroes en batalla.',
+'<a href=https://drive.google.com/file/d/1UYc-nCgbBGS2HAhA83u6tSNSh7wiXYRl/view?usp=drive_link class=btn target=_blank>⬇ Parte 1</a> \
+<a href=https://drive.google.com/file/d/1E94Ivs7bZNc65mDIqKFIbD63hbB-gCa_/view?usp=drive_link class=btn target=_blank>⬇ Parte 2</a> \
+<a href=https://drive.google.com/file/d/1ciuoH9-ZFT2OlbVqeV64CYghTlAhFWMA/view?usp=drive_link class=btn target=_blank>⬇ Parte 3</a>'
+)">
+<img src="archivos/avengers ultron.jpg">
+</div>
+
+<div class="item pelicula terror" onclick="abrirModal(
+'El Teléfono Negro',
+'Terror psicológico.',
+'<a href=https://drive.google.com/file/d/1QEDZrwiTophnLE7CzIBq1u_KfBr5onNk/view?usp=sharing class=btn target=_blank>⬇ Parte 1</a> \
+<a href=https://drive.google.com/file/d/1PkWXOmEgeQhyT4LLd1pPbw7Odlp_Fqdr/view?usp=sharing class=btn target=_blank>⬇ Parte 2</a> \
+<a href=https://drive.google.com/file/d/13RN6Skh5jq1Gwen6HzpvWb636793gXYL/view?usp=sharing class=btn target=_blank>⬇ Parte 3</a>'
+)">
+<img src="archivos/BlackPhone.jpg">
+</div>
+
+</div>
+</section>
 
 <div id="modal" class="modal">
   <div class="modal-content">
@@ -15,352 +211,38 @@
   </div>
 </div>
 
-  body {
-  background: #020617;
-  color: white;
-  font-family: Arial, sans-serif;
-  margin: 0;
-}
-
-#menu {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(8px);
-  padding: 15px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-
-#menu a {
-  color: #38bdf8;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-}
-
-#menu a:hover {
-  color: #facc15;
-}
-
-section {
-  background: rgba(15, 23, 42, 0.4);
-  margin: 30px 0;
-  border-radius: 16px;
-}
-
-.item {
-  background: rgba(255,255,255,0.05);
-  padding: 15px;
-  border-radius: 10px;
-  margin: 12px auto;
-  max-width: 420px;
-}
-
-.btn {
-  display: inline-block;
-  margin: 4px 2px;
-  padding: 6px 10px;
-  background: #1e293b;
-  color: #facc15;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 12px;
-}
-
-.btn:hover {
-  background: #334155;
-}
-
-.item img {
-  max-width: 140px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-}
-
-.item:hover img {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
-}
-
-.item {
-  background: rgba(255,255,255,0.05);
-  padding: 10px;
-  border-radius: 12px;
-  margin: 0;
-  max-width: 100%;
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(56,189,248,0.4);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 15px;
-  padding: 10px;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(2, 6, 23, 0.9);
-  backdrop-filter: blur(6px);
-}
-
-.modal-content {
-  background: #020617;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(56,189,248,0.5);
-}
-
-.close {
-  float: right;
-  font-size: 20px;
-  cursor: pointer;
-  color: #f87171;
-}
-
-.close:hover {
-  color: #ef4444;
-}
-  </style>
-</head>
-<body>
-
-<nav id="menu">
-  <a href="#inicio">🏠 Inicio</a>
-  <a href="#juegos">🕹️ Juegos</a>
-  <a href="#peliculas">🎬 Películas</a>
-</nav>
-
-<!-- ===== MENÚ ===== -->
-<nav>
-  <div class="logo">🎬 MoviePlay 🎮</div>
-  <div>
-    <a href="#inicio">Inicio</a>
-    <a href="#juegos">Juegos</a>
-    <a href="#peliculas">Películas</a>
-  </div>
-</nav>
-
-<!-- ===== INICIO ===== -->
-<section id="inicio">
-  <h1>Bienvenido a MoviePlay</h1>
-  <p>Tu biblioteca digital de películas y juegos clásicos</p>
-</section>
-
-<!-- ===== JUEGOS ===== -->
-<section id="juegos">
-<div class="grid">
-  <h2>🕹️ Juegos</h2>
-<input 
-  type="text" 
-  id="buscador" 
-  placeholder="🔍 Buscar juego..." 
-  onkeyup="buscarJuego()"
-  style="
-    padding:12px;
-    width:80%;
-    max-width:400px;
-    border-radius:10px;
-    border:none;
-    margin:20px auto;
-    display:block;
-    font-size:1em;
-  "
->
-
-  <h3 style="color:#facc15;">⚔️ Estrategia</h3>
-
-  <div class="item juego"> onclick="abrirModal(
-    
-    'Age of Empires'
-    Estrategia en tiempo real. Construye tu imperio y conquista el mundo.
-    `
-    <a href="https://drive.google.com/file/d/18NkglGOUU5bhT_U-p1iMLN7p26O_5G-m/view?usp=drive_link" download class="btn">⬇ Descargar</a>
-    `
-)">
-    <img src="archivos/aoe.jpg" alt="Age of Empires">
-  </div>
-
-  <h3 style="color:#f87171;">💥 Acción</h3>
-
-  <div class="item juego"> onclick="abrirModal(
-    'Angry Birds'
-    `
-    <a href="https://drive.google.com/file/d/1UtwLdH_vjJ5hlriFsuZB9EQS_LmxH7d7/view?usp=drive_link" download class="btn">⬇ Descargar</a>
-      `
-    )">
-    <img src="archivos/angribirds.jpg" alt="Angry Birds">
- </div>
-
-<div class="item juego"
-onclick="abrirModal(
-  'Guitar Hero III',
-  'Juego musical de rock con guitarras legendarias.',
-  `
-  <a href='https://drive.google.com/file/d/1ZPKFowEay0DlaXYODQV0TspyDVWGzaWi/view?usp=drive_link' class='btn' target='_blank'>⬇ Parte 1</a>
-  <a href='https://drive.google.com/file/d/1JI-N0XcQvVL1RMPywtY1I9Cjd9dWWC5f/view?usp=drive_link' class='btn' target='_blank'>⬇ Parte 2</a>
-  <a href='https://drive.google.com/file/d/1bnJYL_ahMEFM1lwG0_JED4dnQK5Iz4c8/view?usp=drive_link' class='btn' target='_blank'>⬇ Parte 3</a>
-  <a href='https://drive.google.com/file/d/1f9qD0QkzGxJuwK85rCZpHuZCnYZCCtsX/view?usp=drive_link' class='btn' target='_blank'>⬇ Parte 4</a>
-  `
-)">
-  <img src="archivos/GHIII.jpg" alt="Guitar Hero III" width="180">
-</div>
-
-<div class="item juego accion"> onclick="abrirModal(
-     'GTA San Andreas'
-     `
-    <a href="https://mega.nz/file/4dhTiQQC#jZGrT0xCsOUuGfrhWKdKsLgcNywLiPiITNc8CB9aGqg" download class="btn">⬇ Parte 1</a>
-    <a href="https://mega.nz/file/pRBlHCYQ#wLKLqIa7ZYXX7aiht6SVzmJDf0owExju-FZ339mpuWM" download class="btn">⬇ Parte 2</a>
-`
-)">
-    <img src="archivos/GTA San Andreas.jpg" alt="GTA San Andreas">
-</div>
-
-</section>
-
-<!-- ===== PELÍCULAS ===== -->
-<div style="
-  height:2px;
-  background: linear-gradient(to right, transparent, #38bdf8, transparent);
-  margin:60px 0;
-"></div>
-<section id="peliculas">
-<div class="grid">
-  <h2>🎥 Películas</h2>
-<input 
-  type="text" 
-  id="buscadorPeliculas" 
-  placeholder="🔍 Buscar película..." 
-  onkeyup="buscarPelicula()"
-  style="
-    padding:12px;
-    width:80%;
-    max-width:400px;
-    border-radius:10px;
-    border:none;
-    margin:20px auto;
-    display:block;
-    font-size:1em;
-  "
->
-<div style="text-align:center; margin-bottom:20px;">
-  <button class="btn" onclick="filtrarPelis('todas')">🎬 Todas</button>
-  <button class="btn" onclick="filtrarPelis('accion')">💥 Acción</button>
-  <button class="btn" onclick="filtrarPelis('terror')">👻 Terror</button>
-  <button class="btn" onclick="filtrarPelis('animacion')">🐉 Animación</button>
-</div>
-<div class="item pelicula accion" onclick="abrirModal(
-  'Avengers Era de Ultron'
-  `
-  <a href="https://drive.google.com/file/d/1UYc-nCgbBGS2HAhA83u6tSNSh7wiXYRl/view?usp=drive_link" 
-   class="btn" target="_blank">⬇ Parte 1</a>
-  <a href="https://drive.google.com/file/d/1E94Ivs7bZNc65mDIqKFIbD63hbB-gCa_/view?usp=drive_link" 
-   class="btn" target="_blank">⬇ Parte 2</a>
-  <a href="https://drive.google.com/file/d/1ciuoH9-ZFT2OlbVqeV64CYghTlAhFWMA/view?usp=drive_link" 
-   class="btn" target="_blank">⬇ Parte 3</a>
-  `
-)">
-  <img src="archivos/avengers ultron.jpg" alt="Avenger Era de Ultron">
-</div>
-
-<div class="item pelicula terror" onclick="abrirModal(
-  'El teléfono negro (2021)',
-  'Un niño es secuestrado por un asesino y descubre que puede comunicarse con las víctimas anteriores a través de un teléfono desconectado.',
-  `
-  <a href='https://drive.google.com/file/d/1QEDZrwiTophnLE7CzIBq1u_KfBr5onNk/view?usp=sharing' class='btn' target='_blank'>⬇ Parte 1</a>
-  <a href='https://drive.google.com/file/d/1PkWXOmEgeQhyT4LLd1pPbw7Odlp_Fqdr/view?usp=sharing' class='btn' target='_blank'>⬇ Parte 2</a>
-  <a href='https://drive.google.com/file/d/13RN6Skh5jq1Gwen6HzpvWb636793gXYL/view?usp=sharing' class='btn' target='_blank'>⬇ Parte 3</a>
-  `
-)">
-  <img src="archivos/BlackPhone.jpg" alt="El teléfono negro">
-</div>
-
-  <div class="item">
-    <b>Próximamente</b>
-    <p>Aquí aparecerán tus películas.</p>
-  </div>
-
-</section>
-
-<footer>
-  © 2026 MoviePlay
-</footer>
-
 <script>
-function buscarJuego() {
-  let input = document.getElementById("buscador");
-  let filtro = input.value.toLowerCase();
-  let juegos = document.getElementsByClassName("juego");
+function buscarJuego(){
+let f=document.getElementById("buscador").value.toLowerCase();
+let j=document.getElementsByClassName("juego");
+for(let i=0;i<j.length;i++){
+j[i].style.display=j[i].innerText.toLowerCase().includes(f)?"":"none";
+}}
 
-  for (let i = 0; i < juegos.length; i++) {
-    let texto = juegos[i].innerText.toLowerCase();
-    if (texto.includes(filtro)) {
-      juegos[i].style.display = "";
-    } else {
-      juegos[i].style.display = "none";
-    }
-  }
+function buscarPelicula(){
+let f=document.getElementById("buscadorPeliculas").value.toLowerCase();
+let p=document.getElementsByClassName("pelicula");
+for(let i=0;i<p.length;i++){
+p[i].style.display=p[i].innerText.toLowerCase().includes(f)?"":"none";
+}}
+
+function filtrarPelis(cat){
+let p=document.getElementsByClassName("pelicula");
+for(let i=0;i<p.length;i++){
+p[i].style.display=(cat==="todas"||p[i].classList.contains(cat))?"":"none";
+}}
+
+function abrirModal(t,d,b){
+document.getElementById("modalTitulo").innerText=t;
+document.getElementById("modalDescripcion").innerText=d;
+document.getElementById("modalBotones").innerHTML=b;
+document.getElementById("modal").style.display="flex";
 }
 
-function buscarPelicula() {
-  let input = document.getElementById("buscadorPeliculas");
-  let filtro = input.value.toLowerCase();
-  let pelis = document.getElementsByClassName("pelicula");
-
-  for (let i = 0; i < pelis.length; i++) {
-    let texto = pelis[i].innerText.toLowerCase();
-    if (texto.includes(filtro)) {
-      pelis[i].style.display = "";
-    } else {
-      pelis[i].style.display = "none";
-    }
-  }
+function cerrarModal(){
+document.getElementById("modal").style.display="none";
 }
-
-function filtrarPelis(categoria) {
-  let pelis = document.getElementsByClassName("pelicula");
-
-  for (let i = 0; i < pelis.length; i++) {
-    if (categoria === "todas") {
-      pelis[i].style.display = "";
-    } else {
-      if (pelis[i].classList.contains(categoria)) {
-        pelis[i].style.display = "";
-      } else {
-        pelis[i].style.display = "none";
-      }
-    }
-  }
-}
-
-function abrirModal(titulo, descripcion, botonesHTML) {
-  document.getElementById("modalTitulo").innerText = titulo;
-  document.getElementById("modalDescripcion").innerText = descripcion;
-  document.getElementById("modalBotones").innerHTML = botonesHTML;
-  document.getElementById("modal").style.display = "block";
-}
-
-function cerrarModal() {
-  document.getElementById("modal").style.display = "none";
-}
-
 </script>
+
 </body>
 </html>
