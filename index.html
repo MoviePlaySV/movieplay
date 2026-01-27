@@ -50,12 +50,13 @@ section {
 
 .btn {
   display: inline-block;
-  margin: 8px 5px;
-  padding: 10px 15px;
+  margin: 4px 2px;
+  padding: 6px 10px;
   background: #1e293b;
   color: #facc15;
-  border-radius: 8px;
+  border-radius: 6px;
   text-decoration: none;
+  font-size: 12px;
 }
 
 .btn:hover {
@@ -63,9 +64,9 @@ section {
 }
 
 .item img {
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+  max-width: 140px;
+  border-radius: 8px;
+  margin-bottom: 8px;
 }
 
 .item:hover img {
@@ -74,12 +75,25 @@ section {
 }
 
 .item {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  border-radius: 12px;
+  margin: 0;
+  max-width: 100%;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 30px rgba(250, 204, 21, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(56,189,248,0.4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 10px;
 }
   </style>
 </head>
@@ -109,6 +123,7 @@ section {
 
 <!-- ===== JUEGOS ===== -->
 <section id="juegos">
+<div class="grid">
   <h2>🕹️ Juegos</h2>
 <input 
   type="text" 
@@ -173,6 +188,7 @@ section {
   margin:60px 0;
 "></div>
 <section id="peliculas">
+<div class="grid">
   <h2>🎥 Películas</h2>
 <input 
   type="text" 
@@ -228,6 +244,7 @@ section {
     <p>Aquí aparecerán tus películas.</p>
   </div>
 
+</section>
 
 <footer>
   © 2026 MoviePlay
