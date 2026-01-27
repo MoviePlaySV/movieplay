@@ -6,6 +6,15 @@
   <meta name="google-site-verification" content="RqBZZ0UDf8IDzQp3185GKFxtuUbCPUBDVvGdYpzWz0w" />
   <style>
 
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal()">✖</span>
+    <h2 id="modalTitulo"></h2>
+    <p id="modalDescripcion"></p>
+    <div id="modalBotones"></div>
+  </div>
+</div>
+
   body {
   background: #020617;
   color: white;
@@ -95,6 +104,40 @@ section {
   gap: 15px;
   padding: 10px;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 6, 23, 0.9);
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  background: #020617;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(56,189,248,0.5);
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: #f87171;
+}
+
+.close:hover {
+  color: #ef4444;
+}
   </style>
 </head>
 <body>
@@ -144,39 +187,48 @@ section {
 
   <h3 style="color:#facc15;">⚔️ Estrategia</h3>
 
-  <div class="item juego">
-    <img src="archivos/aoe.jpg" width="200"><br><br>
-    <b>Age of Empires</b>
-    <p>Estrategia en tiempo real. Construye tu imperio y conquista el mundo.</p>
+  <div class="item juego"> onclick="abrirModal(
+    
+    'Age of Empires'
+    Estrategia en tiempo real. Construye tu imperio y conquista el mundo.
+    `
     <a href="https://drive.google.com/file/d/18NkglGOUU5bhT_U-p1iMLN7p26O_5G-m/view?usp=drive_link" download class="btn">⬇ Descargar</a>
+    `
+)">
+    <img src="archivos/aoe.jpg" alt="Age of Empires">
   </div>
 
   <h3 style="color:#f87171;">💥 Acción</h3>
 
-  <div class="item juego">
-    <img src="archivos/angribirds.jpg" width="200"><br><br>
-    <b>Angry Birds Portable Español</b>
-    <p>Acción clásica en primera persona. Demonios, armas y pura adrenalina.</p>
+  <div class="item juego"> onclick="abrirModal(
+    'Angry Birds'
+    `
     <a href="https://drive.google.com/file/d/1UtwLdH_vjJ5hlriFsuZB9EQS_LmxH7d7/view?usp=drive_link" download class="btn">⬇ Descargar</a>
-  </div>
+      `
+    )">
+    <img src="archivos/angribirds.jpg" alt="Angry Birds">
+ </div>
 
-<div class="item juego">
-    <img src="archivos/GHIII.jpg" width="200"><br><br>
-    <b>Guitar Hero III</b>
-    <p>Musica banda Rock.</p>
+<div class="item juego"> onclick="abrirModal(
+     'Guitar Hero III'
+     `
     <a href="https://drive.google.com/file/d/1ZPKFowEay0DlaXYODQV0TspyDVWGzaWi/view?usp=drive_link" download class="btn">⬇ Parte 1</a>
     <a href="https://drive.google.com/file/d/1JI-N0XcQvVL1RMPywtY1I9Cjd9dWWC5f/view?usp=drive_link" download class="btn">⬇ Parte 2</a>
     <a href="https://drive.google.com/file/d/1bnJYL_ahMEFM1lwG0_JED4dnQK5Iz4c8/view?usp=drive_link" download class="btn">⬇ Parte 3</a>
     <a href="https://drive.google.com/file/d/1f9qD0QkzGxJuwK85rCZpHuZCnYZCCtsX/view?usp=drive_link" download class="btn">⬇ Parte 4</a>
+    `
+)">
+    <img src="archivos/GHIII.jpg" alt="GHIII">
 </div>
 
-<div class="item juego accion">
-    <img src="archivos/GTA San Andreas.jpg" width="200"><br><br>
-    <b>GTA San Andreas</b>
-    <p>Accion disparos.</p>
+<div class="item juego accion"> onclick="abrirModal(
+     'GTA San Andreas'
+     `
     <a href="https://mega.nz/file/4dhTiQQC#jZGrT0xCsOUuGfrhWKdKsLgcNywLiPiITNc8CB9aGqg" download class="btn">⬇ Parte 1</a>
     <a href="https://mega.nz/file/pRBlHCYQ#wLKLqIa7ZYXX7aiht6SVzmJDf0owExju-FZ339mpuWM" download class="btn">⬇ Parte 2</a>
-
+`
+)">
+    <img src="archivos/GTA San Andreas.jpg" alt="GTA San Andreas">
 </div>
 
 </section>
@@ -212,32 +264,31 @@ section {
   <button class="btn" onclick="filtrarPelis('terror')">👻 Terror</button>
   <button class="btn" onclick="filtrarPelis('animacion')">🐉 Animación</button>
 </div>
-<div class="item pelicula accion">
-  <img src="archivos/avengers ultron.jpg" width="200"><br><br>
-  <b>Avengers: Era de ultrón (2019)</b>
-  <p>Superhéroes. La batalla final por el destino del universo.</p>
-
+<div class="item pelicula accion" onclick="abrirModal(
+  'Avengers Era de Ultron'
+  `
   <a href="https://drive.google.com/file/d/1UYc-nCgbBGS2HAhA83u6tSNSh7wiXYRl/view?usp=drive_link" 
    class="btn" target="_blank">⬇ Parte 1</a>
   <a href="https://drive.google.com/file/d/1E94Ivs7bZNc65mDIqKFIbD63hbB-gCa_/view?usp=drive_link" 
    class="btn" target="_blank">⬇ Parte 2</a>
   <a href="https://drive.google.com/file/d/1ciuoH9-ZFT2OlbVqeV64CYghTlAhFWMA/view?usp=drive_link" 
    class="btn" target="_blank">⬇ Parte 3</a>
+  `
+)">
+  <img src="archivos/avengers ultron.jpg" alt="Avenger Era de Ultron">
 </div>
 
-<div class="item pelicula terror">
-  <img src="archivos/BlackPhone.jpg" width="200"><br><br>
-  <b>El telefono negro (2021)</b>
-  <p> Cine de terror.</p>
-
-  <a href="https://drive.google.com/file/d/1QEDZrwiTophnLE7CzIBq1u_KfBr5onNk/view?usp=sharing" 
-   class="btn" target="_blank">⬇ Parte 1</a>
-  <a href="https://drive.google.com/file/d/1PkWXOmEgeQhyT4LLd1pPbw7Odlp_Fqdr/view?usp=sharing" 
-   class="btn" target="_blank">⬇ Parte 2</a>
-  <a href="https://drive.google.com/file/d/13RN6Skh5jq1Gwen6HzpvWb636793gXYL/view?usp=sharing" 
-   class="btn" target="_blank">⬇ Parte 3</a>
-  <a href="https://drive.google.com/file/d/1Smeyvb4WAGFFaLZn_8K75YzWy5DcgGYr/view?usp=sharing" 
-   class="btn" target="_blank">⬇ Parte 3</a>
+<div class="item pelicula terror" onclick="abrirModal(
+  'El teléfono negro (2021)',
+  'Un niño es secuestrado por un asesino y descubre que puede comunicarse con las víctimas anteriores a través de un teléfono desconectado.',
+  `
+  <a href='https://drive.google.com/file/d/1QEDZrwiTophnLE7CzIBq1u_KfBr5onNk/view?usp=sharing' class='btn' target='_blank'>⬇ Parte 1</a>
+  <a href='https://drive.google.com/file/d/1PkWXOmEgeQhyT4LLd1pPbw7Odlp_Fqdr/view?usp=sharing' class='btn' target='_blank'>⬇ Parte 2</a>
+  <a href='https://drive.google.com/file/d/13RN6Skh5jq1Gwen6HzpvWb636793gXYL/view?usp=sharing' class='btn' target='_blank'>⬇ Parte 3</a>
+  `
+)">
+  <img src="archivos/BlackPhone.jpg" alt="El teléfono negro">
+</div>
 
   <div class="item">
     <b>Próximamente</b>
@@ -296,6 +347,18 @@ function filtrarPelis(categoria) {
     }
   }
 }
+
+function abrirModal(titulo, descripcion, botonesHTML) {
+  document.getElementById("modalTitulo").innerText = titulo;
+  document.getElementById("modalDescripcion").innerText = descripcion;
+  document.getElementById("modalBotones").innerHTML = botonesHTML;
+  document.getElementById("modal").style.display = "block";
+}
+
+function cerrarModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
 </script>
 </body>
 </html>
