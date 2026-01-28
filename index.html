@@ -199,6 +199,7 @@ section{
 <img src="archivos/plantas.jpg">
 </div>
 
+<div class="item juego" data-titulo="guitar hero III">
 <div class="item juego" onclick="abrirModal( 
 'Guitar Hero III',
 'Juego musical de rock con guitarras legendarias.',
@@ -276,6 +277,16 @@ modalBotones.innerHTML=b;
 }
 
 function cerrarModal(){modal.style.display="none";}
+
+function buscarGlobal() {
+  const texto = document.getElementById("buscadorGlobal").value.toLowerCase();
+  const items = document.querySelectorAll(".item");
+
+  items.forEach(item => {
+    const titulo = item.getAttribute("data-titulo");
+    item.style.display = titulo.includes(texto) ? "block" : "none";
+  });
+}
 </script>
 
 </body>
