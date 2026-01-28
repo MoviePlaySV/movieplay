@@ -201,7 +201,7 @@ section{
 
 
 <div class="item juego"
-     data-titulo="guitar hero iii"
+     data-titulo="guitar hero III"
      onclick="abrirModal(
        'Guitar Hero III',
        'Juego musical de rock con guitarras legendarias.',
@@ -258,9 +258,14 @@ section{
 </div>
 
 <script>
-function mostrarJuegos(){
-document.getElementById("juegos").style.display="block";
-document.getElementById("peliculas").style.display="none";
+function buscarJuego(){
+  let f = document.getElementById("buscador").value.toLowerCase();
+  let juegos = document.getElementsByClassName("juego");
+
+  for(let i = 0; i < juegos.length; i++){
+    let titulo = juegos[i].getAttribute("data-titulo");
+    juegos[i].style.display = titulo.includes(f) ? "" : "none";
+  }
 }
 
 function mostrarPeliculas(){
