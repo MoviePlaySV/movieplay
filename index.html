@@ -5,73 +5,82 @@
 <title>MoviePlay - Descargas</title>
 
 <style>
-body {
-  background: 
+body{
+  background:
     radial-gradient(circle at top, #1e293b 0%, transparent 60%),
     radial-gradient(circle at bottom, #020617 0%, #000 60%),
-    linear-gradient(135deg, #020617, #0f172a);
-  color: white;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  min-height: 100vh;
+    linear-gradient(135deg,#020617,#0f172a);
+  color:#fff;
+  font-family:Arial,sans-serif;
+  margin:0;
 }
 
-#menu {
-  background:rgba(15,23,42,0.8);
+/* MENU */
+#menu{
+  background:rgba(15,23,42,.85);
   padding:15px;
-  text-align:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   position:sticky;
   top:0;
   z-index:999;
 }
 
-#menu a {
+#menu a{
   color:#38bdf8;
   text-decoration:none;
-  margin:0 15px;
+  margin:0 12px;
   font-weight:bold;
 }
 
-#menu a:hover { color:#facc15; }
+#menu a:hover{color:#facc15}
 
-section {
-  background: rgba(15, 23, 42, 0.55);
-  margin: 40px auto;
-  border-radius: 20px;
-  max-width: 1200px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+#buscadorGlobal{
+  padding:8px 12px;
+  border-radius:10px;
+  border:none;
+  width:220px;
 }
 
-.grid {
+/* SECCIONES */
+section{
+  max-width:1200px;
+  margin:40px auto;
+  padding:20px;
+  background:rgba(15,23,42,.55);
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(0,0,0,.6);
+}
+
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
   gap:18px;
 }
 
-.item {
-  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-  padding: 10px;
-  border-radius: 14px;
-  text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.08);
+/* TARJETAS */
+.item{
+  background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border-radius:14px;
+  padding:10px;
+  text-align:center;
+  cursor:pointer;
+  transition:.25s;
 }
 
-.item img {
+.item img{
   width:100%;
-  max-width:160px;
   border-radius:10px;
 }
 
-.item:hover {
-  transform: translateY(-6px) scale(1.05);
-  box-shadow: 
-    0 10px 30px rgba(56,189,248,0.35),
-    0 0 25px rgba(56,189,248,0.45);
+.item:hover{
+  transform:translateY(-6px) scale(1.05);
+  box-shadow:0 10px 30px rgba(56,189,248,.45);
 }
 
-.btn {
+/* BOTONES */
+.btn{
   display:inline-block;
   margin:6px 4px;
   padding:8px 12px;
@@ -79,106 +88,69 @@ section {
   color:#facc15;
   border-radius:8px;
   text-decoration:none;
-  font-size:14px;
 }
-
-.btn:hover { background:#334155; }
 
 /* MODAL */
-.modal {
+.modal{
   display:none;
   position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
+  inset:0;
   background:rgba(0,0,0,.85);
-  z-index:2000;
   justify-content:center;
   align-items:center;
+  z-index:2000;
 }
 
-.modal-content {
+.modal-content{
   background:#020617;
   padding:25px;
-  border-radius:15px;
-  max-width:420px;
+  border-radius:16px;
   width:90%;
-  text-align:center;
-  box-shadow:0 0 30px rgba(56,189,248,.5);
+  max-width:420px;
+  animation:zoom .3s ease;
+  box-shadow:0 0 30px rgba(56,189,248,.6);
 }
 
-.close {
+@keyframes zoom{
+  from{transform:scale(.7);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+.close{
   float:right;
-  font-size:22px;
   cursor:pointer;
+  font-size:20px;
   color:#f87171;
 }
-
-.close:hover { color:#ef4444; }
 </style>
 </head>
 
 <body>
 
 <nav id="menu">
-  <div class="menu-left">
-    <a href="#inicio">🏠 Inicio</a>
+  <div>
     <a href="#" onclick="mostrarJuegos()">🕹️ Juegos</a>
     <a href="#" onclick="mostrarPeliculas()">🎬 Películas</a>
   </div>
-
-<section id="inicio">
-  <h1>🎬 MoviePlay 🎮</h1>
-  <p>Tu biblioteca gamer y cinematográfica</p>
-</section>
+  <input id="buscadorGlobal" placeholder="🔍 Buscar..." onkeyup="busquedaGlobal()">
+</nav>
 
 <section id="juegos">
 <h2>🕹️ Juegos</h2>
-
-<input id="buscador" placeholder="Buscar juego..."
-onkeyup="buscarJuego()" style="padding:10px;width:80%;max-width:400px;border-radius:10px;border:none;display:block;margin:15px auto;">
-
 <div class="grid">
 
 <div class="item juego" onclick="abrirModal(
 'Age of Empires',
-'Estrategia en tiempo real. Construye tu imperio y conquista el mundo.',
-'<a href=https://drive.google.com/file/d/18NkglGOUU5bhT_U-p1iMLN7p26O_5G-m/view?usp=drive_link class=btn target=_blank>⬇ Descargar</a>'
+'Estrategia en tiempo real.',
+'<a class=btn href=https://drive.google.com/file/d/18NkglGOUU5bhT_U-p1iMLN7p26O_5G-m/view target=_blank>⬇ Descargar</a>'
 )">
 <img src="archivos/aoe.jpg">
 </div>
 
 <div class="item juego" onclick="abrirModal(
-'Angry Birds',
-'Acción casual con pájaros explosivos.',
-'<a href=https://drive.google.com/file/d/1UtwLdH_vjJ5hlriFsuZB9EQS_LmxH7d7/view?usp=drive_link class=btn target=_blank>⬇ Descargar</a>'
-)">
-<img src="archivos/angribirds.jpg">
-</div>
-
-<div class="item juego" onclick="abrirModal(
-'Plantas vs zombies',
-'Acción casual contra zombies.',
-'<a href=https://mega.nz/file/FAY1lb6R#RYCqaURoyguQHkPOcyfYvSSyP4-rXy8foDP5se7MbTI class=btn target=_blank>⬇ Descargar</a>'
-)">
-<img src="archivos/plantas.jpg">
-</div>
-
-<div class="item juego" onclick="abrirModal(
-'Guitar Hero III',
-'Juego musical de rock con guitarras legendarias.',
-'<a href=https://drive.google.com/file/d/1ZPKFowEay0DlaXYODQV0TspyDVWGzaWi/view?usp=drive_link class=btn target=_blank>⬇ Parte 1</a> \
-<a href=https://drive.google.com/file/d/1JI-N0XcQvVL1RMPywtY1I9Cjd9dWWC5f/view?usp=drive_link class=btn target=_blank>⬇ Parte 2</a> \
-<a href=https://drive.google.com/file/d/1bnJYL_ahMEFM1lwG0_JED4dnQK5Iz4c8/view?usp=drive_link class=btn target=_blank>⬇ Parte 3</a> \
-<a href=https://drive.google.com/file/d/1f9qD0QkzGxJuwK85rCZpHuZCnYZCCtsX/view?usp=drive_link class=btn target=_blank>⬇ Parte 4</a>'
-)">
-<img src="archivos/GHIII.jpg">
-</div>
-
-<div class="item juego" onclick="abrirModal(
 'GTA San Andreas',
-'Acción en mundo abierto.',
-'<a href=https://mega.nz/file/4dhTiQQC#jZGrT0xCsOUuGfrhWKdKsLgcNywLiPiITNc8CB9aGqg class=btn target=_blank>⬇ Parte 1</a> \
-<a href=https://mega.nz/file/pRBlHCYQ#wLKLqIa7ZYXX7aiht6SVzmJDf0owExju-FZ339mpuWM class=btn target=_blank>⬇ Parte 2</a>'
+'Mundo abierto lleno de acción.',
+'<a class=btn href=https://mega.nz/file/4dhTiQQC#jZGrT0xCsOUuGfrhWKdKsLgcNywLiPiITNc8CB9aGqg target=_blank>⬇ Parte 1</a>'
 )">
 <img src="archivos/gta.jpg">
 </div>
@@ -186,26 +158,14 @@ onkeyup="buscarJuego()" style="padding:10px;width:80%;max-width:400px;border-rad
 </div>
 </section>
 
-<section id="peliculas">
-<h2>🎥 Películas</h2>
-
-<input id="buscadorPeliculas" placeholder="Buscar película..."
-onkeyup="buscarPelicula()" style="padding:10px;width:80%;max-width:400px;border-radius:10px;border:none;display:block;margin:15px auto;">
-
-<div style="text-align:center;">
-<button class="btn" onclick="filtrarPelis('todas')">Todas</button>
-<button class="btn" onclick="filtrarPelis('accion')">Acción</button>
-<button class="btn" onclick="filtrarPelis('terror')">Terror</button>
-</div>
-
+<section id="peliculas" style="display:none">
+<h2>🎬 Películas</h2>
 <div class="grid">
 
 <div class="item pelicula accion" onclick="abrirModal(
 'Avengers Era de Ultron',
-'Superhéroes en batalla.',
-'<a href=https://drive.google.com/file/d/1UYc-nCgbBGS2HAhA83u6tSNSh7wiXYRl/view?usp=drive_link class=btn target=_blank>⬇ Parte 1</a> \
-<a href=https://drive.google.com/file/d/1E94Ivs7bZNc65mDIqKFIbD63hbB-gCa_/view?usp=drive_link class=btn target=_blank>⬇ Parte 2</a> \
-<a href=https://drive.google.com/file/d/1ciuoH9-ZFT2OlbVqeV64CYghTlAhFWMA/view?usp=drive_link class=btn target=_blank>⬇ Parte 3</a>'
+'Superhéroes en acción.',
+'<a class=btn href=https://drive.google.com/file/d/1UYc-nCgbBGS2HAhA83u6tSNSh7wiXYRl/view target=_blank>⬇ Parte 1</a>'
 )">
 <img src="archivos/avengers ultron.jpg">
 </div>
@@ -213,23 +173,12 @@ onkeyup="buscarPelicula()" style="padding:10px;width:80%;max-width:400px;border-
 <div class="item pelicula terror" onclick="abrirModal(
 'El Teléfono Negro',
 'Terror psicológico.',
-'<a href=https://drive.google.com/file/d/1QEDZrwiTophnLE7CzIBq1u_KfBr5onNk/view?usp=sharing class=btn target=_blank>⬇ Parte 1</a> \
-<a href=https://drive.google.com/file/d/1PkWXOmEgeQhyT4LLd1pPbw7Odlp_Fqdr/view?usp=sharing class=btn target=_blank>⬇ Parte 2</a> \
-<a href=https://drive.google.com/file/d/13RN6Skh5jq1Gwen6HzpvWb636793gXYL/view?usp=sharing class=btn target=_blank>⬇ Parte 3</a>'
+'<a class=btn href=https://drive.google.com/file/d/1QEDZrwiTophnLE7CzIBq1u_KfBr5onNk/view target=_blank>⬇ Parte 1</a>'
 )">
 <img src="archivos/black.jpg">
 </div>
 
-<div class="item pelicula accion" onclick="abrirModal(
-'Deadpool & Wolvering',
-'super heroes.',
-'<a href=https://drive.google.com/file/d/1kAqeVrUFPfm97uzfjyd25EY3hd0CouMv/view?usp=sharing class=btn target=_blank>⬇ Parte 1</a>' 
-
-)">
-<img src="archivos/deadpool.jpg">
-
 </div>
-
 </section>
 
 <div id="modal" class="modal">
@@ -242,36 +191,31 @@ onkeyup="buscarPelicula()" style="padding:10px;width:80%;max-width:400px;border-
 </div>
 
 <script>
-function buscarJuego(){
-let f=document.getElementById("buscador").value.toLowerCase();
-let j=document.getElementsByClassName("juego");
-for(let i=0;i<j.length;i++){
-j[i].style.display=j[i].innerText.toLowerCase().includes(f)?"":"none";
-}}
+function mostrarJuegos(){
+document.getElementById("juegos").style.display="block";
+document.getElementById("peliculas").style.display="none";
+}
 
-function buscarPelicula(){
-let f=document.getElementById("buscadorPeliculas").value.toLowerCase();
-let p=document.getElementsByClassName("pelicula");
-for(let i=0;i<p.length;i++){
-p[i].style.display=p[i].innerText.toLowerCase().includes(f)?"":"none";
-}}
+function mostrarPeliculas(){
+document.getElementById("juegos").style.display="none";
+document.getElementById("peliculas").style.display="block";
+}
 
-function filtrarPelis(cat){
-let p=document.getElementsByClassName("pelicula");
-for(let i=0;i<p.length;i++){
-p[i].style.display=(cat==="todas"||p[i].classList.contains(cat))?"":"none";
-}}
+function busquedaGlobal(){
+let f=document.getElementById("buscadorGlobal").value.toLowerCase();
+document.querySelectorAll(".item").forEach(e=>{
+e.style.display=e.innerText.toLowerCase().includes(f)?"":"none";
+});
+}
 
 function abrirModal(t,d,b){
-document.getElementById("modalTitulo").innerText=t;
-document.getElementById("modalDescripcion").innerText=d;
-document.getElementById("modalBotones").innerHTML=b;
-document.getElementById("modal").style.display="flex";
+modal.style.display="flex";
+modalTitulo.innerText=t;
+modalDescripcion.innerText=d;
+modalBotones.innerHTML=b;
 }
 
-function cerrarModal(){
-document.getElementById("modal").style.display="none";
-}
+function cerrarModal(){modal.style.display="none";}
 </script>
 
 </body>
